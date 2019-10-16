@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cn.dwr.mapper.ProductMapper">
+<select id="productList" resultType="product">
+    select * from product as p,catagory as c where c.id=p.cid   LIMIT  #{currentPageNo},#{pageSize}
+</select>
+    <select id="productCount" resultType="int">
+    SELECT COUNT(1) FROM product
+    </select>
+    <delete id="delProduct" parameterType="int">
+        delete from product where id=#{id}
+    </delete>
+    <insert id="addProduct" parameterType="product">
+        insert into product(productname,descs,cid,statusIn)value(#{productname},#{descs},#{cid},#{statusIn})
+    </insert>
+</mapper>
